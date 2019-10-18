@@ -1,0 +1,33 @@
+﻿@page
+
+<h1>Counter View</h1>
+<p>New code, same great taste!</p>
+
+<form method="post">
+    <input type="text" id="number" name="number" value="@Number" />
+    <button class="btn btn-default bg-primary">Increment</button>
+</form>
+
+@{
+    @functions {
+        int incrementor = 0;
+
+        int Number
+        {
+            get
+            {
+                return incrementor;
+            }
+            set
+            {
+                incrementor = value;
+            }
+        }
+
+        public void OnPost()
+        {
+            int number = int.Parse(Request.Form["number"]);
+            incrementor = number + 1;
+        }
+    }
+}
